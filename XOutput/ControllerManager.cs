@@ -149,17 +149,17 @@ namespace XOutput
 
         public ControllerDevice[] detectControllers()
         {
-            for (int i = 0; i < 4; i++) //Remove disconnected controllers
-            {
-                if (devices[i] != null && !directInput.IsDeviceAttached(devices[i].joystick.Information.InstanceGuid))
-                {
-                    Console.WriteLine(devices[i].joystick.Properties.InstanceName + " Removed");
-                    devices[i] = null;
-                    workers[i].Abort();
-                    workers[i] = null;
-                    Unplug(i + 1);
-                }
-            }
+            //for (int i = 0; i < 4; i++) //Remove disconnected controllers
+            //{
+            //    if (devices[i] != null && !directInput.IsDeviceAttached(devices[i].joystick.Information.InstanceGuid))
+            //    {
+            //        Console.WriteLine(devices[i].joystick.Properties.InstanceName + " Removed");
+            //        devices[i] = null;
+            //        workers[i].Abort();
+            //        workers[i] = null;
+            //        Unplug(i + 1);
+            //    }
+            //}
 
             foreach (var deviceInstance in directInput.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly))
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using SlimDX.DirectInput;
+using SlimDX.XInput;
 
 namespace XOutput
 {
@@ -49,9 +50,21 @@ namespace XOutput
             SaveManager.Save(joystick.Information.ProductName, mapping);
         }
 
+        private int XinputLT()
+        {
+            byte lt = new Controller(0).GetState().Gamepad.LeftTrigger;
+            return lt * 256;
+        }
+
+        private int XinputRT()
+        {
+            byte rt = new Controller(0).GetState().Gamepad.RightTrigger;
+            return rt * 256;
+        }
+
         private int[] GetAxes(JoystickState jstate)
         {
-            return new int[] { jstate.X, jstate.Y, jstate.Z, jstate.RotationX, jstate.RotationY, jstate.RotationZ };
+            return new int[] { jstate.X, jstate.Y, XinputLT(), jstate.RotationX, jstate.RotationY, XinputRT() };
         }
 
         private unsafe byte toByte(bool n)
