@@ -1,4 +1,5 @@
 XOutput is a simple DirectInput to XInput wrapper made in C#. It uses the SCPDriver has a backend.
+Now modified by me to take input from Steam Controller
 
 #Building
 
